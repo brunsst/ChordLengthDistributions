@@ -47,6 +47,8 @@ int main(int argc, char* argv[])
     bool fit_kgamma = false; //not working yet
     bool export_allchords = false;
 
+    int n_threads = 128;
+
     ////////////////////////////////////////
 
     if ("extract comman line arguments)"){
@@ -92,8 +94,15 @@ int main(int argc, char* argv[])
                 i++;
                 color_interface = atof(argv[i]);
             }
+            else if (string(argv[i]) == "-n_cpu" || string(argv[i]) == "-n_threads")
+			{
+				i++;
+				n_threads = atoi(argv[i]);
+			}
         }
     }
+
+    if (n_threads > 0) omp_set_num_threads(min(n_threads, omp_get_max_threads()));
 
     voxelsize /= 1000; //to um
 
@@ -102,6 +111,8 @@ int main(int argc, char* argv[])
 
     for (uint16_t task = 0; task < tasks.size(); task++)
     {
+        tasks[task] += "/";
+
         cout << "CLD for " << tasks[task] << endl;
         cout << "##################################" << endl;
 
