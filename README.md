@@ -29,7 +29,7 @@ Input data should be binary and a 8bit tif sequence. However interface voxels ma
 
 | argument | type | explanation |
 |----------|------|-------------|
-| -i       | string | full path to input directory which needs to contain an 8bit tif-image sequence. |
+| -i       | string | full path to input directory which needs to contain an 8bit tif-image sequence. Repeating the argument queues multiple directories. |
 | -n       | int    | Default is 10000. Defines the amount of random locations sampled. |
 | -mode    | string | Sets the mode of calculation. |
 | -vxl     | float  | Default 1.0. Allows setting the voxel size for scaling the output to physical length scales. |
